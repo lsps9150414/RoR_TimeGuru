@@ -1,0 +1,78 @@
+<div id="workplaceWrapper" class="container-fluid">
+    <div id="workplace" class="row">
+        <!-- the buffer box -->
+        <div class="col-md-3 col-sm-12 listBox">
+            <h4>Collect your ideas here!</h4>
+            <ul id="stuff" class="connectedSortable stuff">
+                <% @stuffs.each do |stuff| %>
+                    <li data-id="<%= stuff.id %>"><%= stuff.title %></li>
+                <% end %>
+            </ul>
+            <div class="add">
+                <!-- Button trigger modal -->
+                <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                    + new
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new stuff</h4>
+                      </div>
+                      <div class="modal-body">
+                        <%= render partial: "form_for_new_stuff" %>
+                      </div>
+<!--
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Add</button>
+                      </div>
+-->
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!-- the 4 priority box -->
+        <div id="priorityWrapper" class="col-md-9 col-sm-12">
+            <div class="row priorityRow">
+                <% @priorities.each do |priority| %>
+                <div class="col-md-6 col-sm-12 listBox">
+                    <h4><%= priority.title %></h4>
+                    <ul data-id="<%= priority.id %>" class="connectedSortable priority">
+                        <% priority.stuffs.each do |stuff| %>
+                        <li data-id="<%= stuff.id %>"><%= stuff.title %></li>
+                        <% end %>
+                    </ul>
+                    <div class="add">
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                            + new
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Add a new stuff</h4>
+                              </div>
+                              <div class="modal-body">
+                                <%= render partial: "form_for_new_stuff" %>
+                              </div>
+<!--
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Add</button>
+                              </div>
+-->
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
